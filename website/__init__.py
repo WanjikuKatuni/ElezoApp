@@ -5,7 +5,7 @@ from flask import Flask
 
 def create_app():
     app = Flask(__name__)
-    app.config['SECRET_KEY'] = 'ascbskfjefk fesmfawcflm'
+    app.config['SECRET_KEY'] = 'ascbskfjefk fesmfawcflm' #encrypt cookie information for our data
 
     # import the blueprint variables
     from .views import views
