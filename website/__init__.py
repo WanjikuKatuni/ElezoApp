@@ -3,6 +3,7 @@
 
 from flask import Flask
 from flask_sqlalchemy import SQLAlchemy
+from os import path
 
 
 
@@ -22,4 +23,22 @@ def create_app():
     app.register_blueprint(views, url_prefix='/')
     app.register_blueprint(auth, url_prefix='/')
 
+    # check if db is created everytime server is run
+    # import .models
+    from .models import User, Note
+    
+
+    with app.app_context():
+        db.create_all()
+
+
+
+
     return app
+
+    # check if db exists and if it doesnt, it will create it and not overwirte it if it exists
+
+def create_database(app):
+    if not path.exists('website/' + DB_NAME):
+        db.create_all(app=app)
+        print('Created Database!')
